@@ -1,0 +1,19 @@
+{
+  "type": "mongodb",
+  "host": "13.124.74.235",
+  "port": 27017,
+  "username": "rock",
+  "password": "9409",
+  "database": "board",
+  "synchronize": false,
+  "logging": true,
+  "entities": [
+     "src/entity/**/*.ts"
+  ],
+  "migrations": [
+     "src/migration/**/*.ts"
+  ],
+  "subscribers": [
+     "src/subscriber/**/*.ts"
+  ]
+}

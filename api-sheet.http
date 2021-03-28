@@ -1,0 +1,30 @@
+###
+POST http://localhost:3000/api/post HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Hello post",
+  "author": "Rockheung",
+  "body": "We are done here, just make a post request to http://localhost:3000/api/user in the request body include: name email and password you will get a response either user object if user is created successfully or an error message if something went wrong."
+}
+
+###
+POST http://localhost:3000/api/post HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Hello post",
+  "author": "Rockheung"
+}
+
+
+
+###
+
+GET http://pick-ring.com
+
+
+
+###
+
+GET https://pick-ring.com
