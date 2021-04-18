@@ -1,4 +1,22 @@
+import React from "react";
+import Link from "next/link";
+
 export default function Board() {
+  const [posts, setPosts] = React.useState([]);
+  const handleInitialLoading = React.useCallback(async () => {
+    const res = await fetch("/api/posts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await res.json();
+    setPosts(json);
+  }, []);
+
+  React.useEffect(() => {
+    handleInitialLoading();
+  }, []);
   return (
     <>
       <header>
@@ -58,7 +76,7 @@ export default function Board() {
         </nav>
       </header>
       <main>
-        <section className="hero is-fullheight is-info">
+        <section className="hero  is-info">
           <div className="hero-body">
             <p className="title">아주 간단한</p>
             <p className="subtitle">간단한 게시판</p>
@@ -71,6 +89,18 @@ export default function Board() {
             <div className="column">댓글</div>
             <div className="column">편집</div>
           </div>
+          {posts.map((post, idx) => {
+            return (
+              <Link key={post._id} href={"/board/" + post._id}>
+                <div className="columns is-gapless">
+                  <div className="column">{idx}</div>
+                  <div className="column">{post.title}</div>
+                  <div className="column">{0}</div>
+                  <div className="column">{"편집"}</div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </main>
       <footer className="footer">
@@ -90,4 +120,10 @@ export default function Board() {
       </footer>
     </>
   );
+}
+
+export async function getServerSideProps({ req, res }) {
+  return {
+    props: {},
+  };
 }

@@ -25,4 +25,4 @@ PostSchema.methods.len = function () {
   return this.body.length;
 };
 
-export default mongoose.model("Post", PostSchema);
+export default mongoose.models["Post"] ?? mongoose.model("Post", PostSchema);

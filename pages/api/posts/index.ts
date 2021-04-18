@@ -1,4 +1,4 @@
-import Post from "../../model/Post";
+import Post from "../../../model/Post";
 
 export default async (req, res) => {
   // new Post 형태로는 save가 되지 않아 create 메서드 사용
@@ -26,5 +26,17 @@ export default async (req, res) => {
       res.status(400).send();
     }
   } else if (req.method === "GET") {
+    const posts = await new Promise((resolve, reject) => {
+      Post.find({}, function (err, doc) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(doc);
+      });
+    });
+    res.status(200).send(posts);
+  } else {
+    res.status(501).send();
   }
 };
